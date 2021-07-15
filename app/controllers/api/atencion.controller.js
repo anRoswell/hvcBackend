@@ -27,7 +27,14 @@ class AtencionController {
 
 	async atencion(req, res) {
 		try {
-			const resp = await _service.atencion(req.body)
+			const action = req.body.action
+			let resp
+			if (action === 'register') {
+				resp = await _service.atencion(req.body)
+			} else {
+				resp = await _service.editAtention(req.body)
+			}
+
 			//return Process.error(res, Message('AUTH_LOCKED'), 403)
 			Process.success(res, resp)
 		} catch (error) {

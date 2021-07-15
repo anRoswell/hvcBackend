@@ -10,11 +10,8 @@ const Log4js = require('../base/log4js')()
 const { format } = require('date-fns')
 const Base64ToImg = require('./../utils/base64ToImg')
 base64ToImg = new Base64ToImg()
-let dataContratoPdf = {}
-let dataUser
-let groupNameService = ''
 const concepto = 'firmas'
-let path, nombreArchivo, firmaFinal, contratoUrl
+let path, nombreArchivo
 
 let _model = null
 
@@ -31,9 +28,28 @@ class AtencionService {
 			data.signUrl = `${path.pathBD}/${nombreArchivo}.png`
 			delete data.sign
 			delete data.patientSign
+			delete data.action
 			const dateSplit = data.date.split('/')
 			data.date = format(new Date(dateSplit[2], dateSplit[1] - 1, dateSplit[0]), 'yyyy-MM-dd')
 			return await _model.create(data)
+		} catch (error) {
+			Log4js.error(`[action: atencion atencionService][msg: ${error.message}][file:${__filename}]`)
+			throw error
+		}
+	}
+
+	async editAtention(data) {
+		try {
+			nombreArchivo = base64ToImg.generarNombreUnico()
+			path = base64ToImg.crearCarpetaUsuario(data.userIdCreatedAt, concepto)
+			firmaFinal = await base64ToImg.convert(data.sign, path, nombreArchivo)
+			data.signUrl = `${path.pathBD}/${nombreArchivo}.png`
+			delete data.sign
+			delete data.patientSign
+			delete data.action
+			const dateSplit = data.date.split('/')
+			data.date = format(new Date(dateSplit[2], dateSplit[1] - 1, dateSplit[0]), 'yyyy-MM-dd')
+			return await _model.update(data)
 		} catch (error) {
 			Log4js.error(`[action: atencion atencionService][msg: ${error.message}][file:${__filename}]`)
 			throw error
