@@ -1,0 +1,4 @@
+{
+  "auth": "SELECT ?? FROM ?? ;",
+  "lastLogin": "SELECT ?? FROM ?? ;"
+}

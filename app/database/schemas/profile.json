@@ -1,0 +1,12 @@
+{
+  "allowed": [
+    "name",
+    "status"
+  ],
+  "required": {
+    "name": "Nombre"
+  },
+  "params": {
+    "id": "/^([0-9])*$/"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "allowed": [
+    "username",
+    "password"
+  ],
+  "required": {
+    "username": "Usuario",
+    "password": "Contraseña"
+  }
+}
