@@ -46,6 +46,15 @@ class AuthController {
 							delete user['password']
 							delete user['status']
 							const token = JWT.create(user)
+
+							const options = await super.menus(user.profileId)
+							const menus = options.filter((o) => !o.menuId)
+							menus.map((m) => {
+								m.menus = options.filter((o) => m.id === o.menuId)
+							})
+							const buffer = Buffer.from(JSON.stringify(menus), 'utf8')
+							user.access = buffer.toString('base64')
+
 							res.setHeader('Authorization', `Bearer ${token}`)
 							Process.success(res, user)
 						}

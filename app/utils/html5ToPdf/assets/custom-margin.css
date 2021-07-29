@@ -1,0 +1,103 @@
+body {
+	margin-left: 1cm !important;
+	margin-right: 1cm !important;
+	margin-bottom: 3cm !important;
+	font-family: 'Cambria';
+	font-size: 14px;
+}
+
+.head {
+	display: flex;
+}
+
+.titulo {
+	font-size: 5rem;
+	color: green;
+	font-weight: bold;
+	width: 20%;
+}
+
+.subTitulo {
+	display: flex;
+	color: green;
+	font-weight: bold;
+	justify-content: center;
+	width: 100% !important;
+	flex-direction: column;
+	text-align: center;
+}
+
+.letraC {
+	color: blue;
+}
+
+.fondoIdentificacion {
+	color: white;
+	background-color: green;
+	text-align: center;
+	padding: 5px 0 5px 0;
+	font-weight: bold;
+}
+
+.divLeft {
+	width: 25%;
+	align-items: self-start;
+}
+
+.divRight {
+	width: 75%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+#slogan {
+	color: green;
+	font-weight: bold;
+	font-size: 1.5rem;
+	margin-right: 10px;
+}
+
+#tituloDivRight {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.formularioTop {
+	margin-top: 5px;
+	display: flex;
+}
+
+.divInterno {
+	margin: 0 5px;
+	width: 20%;
+	margin-bottom: 3px;
+	text-align: center;
+}
+
+.divInternoBottom {
+	border-bottom: 1px solid;
+}
+
+.formularioTop25 {
+	display: flex;
+	margin-top: 30px;
+}
+
+.divInterno25 {
+	margin: 0 5px;
+	width: 25%;
+	text-align: center;
+}
+
+.formularioTop100 {
+	display: flex;
+	margin-top: 30px;
+}
+
+.divInterno100 {
+	margin: 0 5px;
+	width: 100%;
+	text-align: center;
+}

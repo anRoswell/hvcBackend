@@ -1,7 +1,6 @@
 // Configuración del servidor NodeJS
 
 const express = require('express')
-const bodyParser = require('body-parser')
 const cors = require('cors')
 const helmet = require('helmet')
 const fileUpload = require('express-fileupload')
@@ -54,6 +53,9 @@ app.get('/', (req, res) => {
 // Nuevas rutas de la API
 const routes = require('./routes')
 app.use('/api/v1.1/', routes)
+
+// const webRoutes = require('./routing/web')
+// app.use('/web/v1.0/', webRoutes)
 
 app.all('*', (req, res) => {
 	res.status(403).json({

@@ -43,6 +43,7 @@ class PatientController {
 			const { id } = req.params
 			const { userIdCreatedAt } = req.query
 			const resp = await _service.getAtentionsByPatient(id, userIdCreatedAt)
+			console.log(resp)
 			Process.success(res, resp)
 		} catch (error) {
 			Log4js.error(`[action: PatientController getAtentionsByPatient][msg: ${error.message}][file:${__filename}]`)

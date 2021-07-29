@@ -40,16 +40,20 @@ class AtencionService {
 
 	async editAtention(data) {
 		try {
-			nombreArchivo = base64ToImg.generarNombreUnico()
-			path = base64ToImg.crearCarpetaUsuario(data.userIdCreatedAt, concepto)
-			firmaFinal = await base64ToImg.convert(data.sign, path, nombreArchivo)
-			data.signUrl = `${path.pathBD}/${nombreArchivo}.png`
+			if ([true].includes(data.patientSign)) {
+				nombreArchivo = base64ToImg.generarNombreUnico()
+				path = base64ToImg.crearCarpetaUsuario(data.userIdCreatedAt, concepto)
+				firmaFinal = await base64ToImg.convert(data.sign, path, nombreArchivo)
+				data.signUrl = `${path.pathBD}/${nombreArchivo}.png`
+			}
+
 			delete data.sign
 			delete data.patientSign
 			delete data.action
 			const dateSplit = data.date.split('/')
+			const { id } = data
 			data.date = format(new Date(dateSplit[2], dateSplit[1] - 1, dateSplit[0]), 'yyyy-MM-dd')
-			return await _model.update(data)
+			return await _model.update(data, id)
 		} catch (error) {
 			Log4js.error(`[action: atencion atencionService][msg: ${error.message}][file:${__filename}]`)
 			throw error

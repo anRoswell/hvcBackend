@@ -15,7 +15,9 @@ class PatientModel extends Model {
 	async getAtentionsByPatient(patientId, userIdCreatedAt) {
 		try {
 			const sql = `
-        SELECT * 
+        SELECT 
+					a.id, a.userIdCreatedAt, a.finalHour, a.initialHour, a.observation, a.patientId, a.signUrl, a.createdAt,
+					p.document, p.id patientId, p.telefono, p.epsId, p.direccion
         FROM ?? a
         INNER JOIN patients p ON a.patientId = p.id
         WHERE a.patientId = ?

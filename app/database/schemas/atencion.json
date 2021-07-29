@@ -1,5 +1,6 @@
 {
   "allowed": [
+    "id",
     "date",
     "initialHour",
     "finalHour",
@@ -18,7 +19,6 @@
     "finalHour": "finalHour",
     "patientId": "patientId",
     "patientSign": "patientSign",
-    "sign": "sign",
     "observation": "observation",
     "userIdCreatedAt": "userIdCreatedAt",
     "action": "acción"

@@ -10,6 +10,7 @@ const { JWT } = require('../../base/jwt')
 const { AtencionService } = require('../../services/atencion.service')
 const { Process } = require('../../base/process')
 const Message = require('../../messages/message')
+const contratoPDF = require('./../../utils/html5ToPdf/index')
 const Log4js = require('../../base/log4js')()
 let _service = null
 
@@ -30,7 +31,10 @@ class AtencionController {
 			const action = req.body.action
 			let resp
 			if (action === 'register') {
-				resp = await _service.atencion(req.body)
+				//resp = await _service.atencion(req.body)
+
+				//Aqui llamammos al pdf
+				createContratoPdf()
 			} else {
 				resp = await _service.editAtention(req.body)
 			}
@@ -39,8 +43,20 @@ class AtencionController {
 			Process.success(res, resp)
 		} catch (error) {
 			Log4js.error(`[action: Atencion AtencionController][msg: ${error.message}][file:${__filename}]`)
-			return Process.error(res, Message('LOGIN_INVALID'), 500)
+			return Process.error(res, Message('ERROR_INTERNO'), 500)
 		}
+	}
+}
+
+async function createContratoPdf() {
+	try {
+		const objectContratoPdf = await contratoPDF.run()
+		//await sendContratoByMail(objectContratoPdf)
+		return objectContratoPdf
+	} catch (e) {
+		console.log(e)
+		log4js.error(`[action: createContratoPdf newContrato.mssql.service][msg: ${e.message}][file:${__filename}]`)
+		throw new Error(mensajes('ERROR_INTERNO').message)
 	}
 }
 
